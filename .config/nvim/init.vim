@@ -1,9 +1,12 @@
 set nu                     " Relative line numbering
 call plug#begin()
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tomasiser/vim-code-dark'
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+Plug 'mileszs/ack.vim'
 call plug#end()
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -157,8 +160,15 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 nmap <space>e <Cmd>CocCommand explorer<CR>
+nmap <space>p :Files<CR>
 nmap <C-n> 1<C-g>
 set laststatus=2
+
+" rg
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
+nnoremap <space>a :Rg<CR>
+
+
 
 " Terminal Function
 let g:term_buf = 0
@@ -190,4 +200,9 @@ tnoremap <C-z> <C-\><C-n>:call TermToggle(12)<CR>
 " Terminal go back to normal mode
 tnoremap <Esc> <C-\><C-n>
 tnoremap :q! <C-\><C-n>:q!<CR>
-set ic
+set ic 
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+colorscheme codedark
